@@ -2,7 +2,7 @@
   <div class="flex flex-col justify-start items-center min-h-screen">
     <!-- <HeaderStructure /> -->
     <Header />
-    <main class="w-full grow">
+    <main class="flex flex-col w-full grow">
       <slot />
     </main>
     <Footer />
