@@ -6,12 +6,17 @@
       <h2 class="text-2xl font-firaCode">UI Components</h2>
     </section>
 
-    
+    <!-- content -->
+    <section>
+      <AccordionList multipleItemsOpen />
+    </section>
   </div>
 </template>
 
 <script>
-export default {};
+import AccordionList from '~/components/AccordionList.vue';
+export default {
+  components: { AccordionList },};
 </script>
 
 <style>
