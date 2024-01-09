@@ -1,77 +1,92 @@
 <template>
-  <div class="w-full max-w-7xl mx-auto">
-    <h1 class="text-center m-36 text-2xl font-firaCode">Home</h1>
-    <p class="m-36 text-center font-extralight">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non rutrum
-      nisi, ac egestas lacus. Morbi non lacinia libero. Suspendisse consequat
-      nunc ut velit suscipit maximus. Sed diam ex, auctor ac magna nec,
-      elementum accumsan diam. Pellentesque efficitur nisl erat, et venenatis
-      erat consequat sit amet. Curabitur at dignissim lectus. Aenean mollis, est
-      porttitor porta tincidunt, nunc sapien condimentum nunc, quis congue elit
-      magna eget elit. Vivamus at pretium libero. Praesent ut ipsum in felis
-      maximus elementum sed sit amet lorem. Donec molestie maximus mi, vitae
-      rutrum ex auctor eu. Etiam pellentesque sagittis ipsum, non consequat nibh
-      ultricies posuere. Vivamus venenatis augue massa, sed tempus turpis
-      tristique non. Duis consequat fringilla nulla hendrerit ultricies.
-    </p>
-    <p class="m-36 text-center">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non rutrum
-      nisi, ac egestas lacus. Morbi non lacinia libero. Suspendisse consequat
-      nunc ut velit suscipit maximus. Sed diam ex, auctor ac magna nec,
-      elementum accumsan diam. Pellentesque efficitur nisl erat, et venenatis
-      erat consequat sit amet. Curabitur at dignissim lectus. Aenean mollis, est
-      porttitor porta tincidunt, nunc sapien condimentum nunc, quis congue elit
-      magna eget elit. Vivamus at pretium libero. Praesent ut ipsum in felis
-      maximus elementum sed sit amet lorem. Donec molestie maximus mi, vitae
-      rutrum ex auctor eu. Etiam pellentesque sagittis ipsum, non consequat nibh
-      ultricies posuere. Vivamus venenatis augue massa, sed tempus turpis
-      tristique non. Duis consequat fringilla nulla hendrerit ultricies.
-    </p>
-    <p class="m-36 text-center">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non rutrum
-      nisi, ac egestas lacus. Morbi non lacinia libero. Suspendisse consequat
-      nunc ut velit suscipit maximus. Sed diam ex, auctor ac magna nec,
-      elementum accumsan diam. Pellentesque efficitur nisl erat, et venenatis
-      erat consequat sit amet. Curabitur at dignissim lectus. Aenean mollis, est
-      porttitor porta tincidunt, nunc sapien condimentum nunc, quis congue elit
-      magna eget elit. Vivamus at pretium libero. Praesent ut ipsum in felis
-      maximus elementum sed sit amet lorem. Donec molestie maximus mi, vitae
-      rutrum ex auctor eu. Etiam pellentesque sagittis ipsum, non consequat nibh
-      ultricies posuere. Vivamus venenatis augue massa, sed tempus turpis
-      tristique non. Duis consequat fringilla nulla hendrerit ultricies.
-    </p>
-    <p class="m-36 text-center">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non rutrum
-      nisi, ac egestas lacus. Morbi non lacinia libero. Suspendisse consequat
-      nunc ut velit suscipit maximus. Sed diam ex, auctor ac magna nec,
-      elementum accumsan diam. Pellentesque efficitur nisl erat, et venenatis
-      erat consequat sit amet. Curabitur at dignissim lectus. Aenean mollis, est
-      porttitor porta tincidunt, nunc sapien condimentum nunc, quis congue elit
-      magna eget elit. Vivamus at pretium libero. Praesent ut ipsum in felis
-      maximus elementum sed sit amet lorem. Donec molestie maximus mi, vitae
-      rutrum ex auctor eu. Etiam pellentesque sagittis ipsum, non consequat nibh
-      ultricies posuere. Vivamus venenatis augue massa, sed tempus turpis
-      tristique non. Duis consequat fringilla nulla hendrerit ultricies.
-    </p>
-    <p class="m-36 text-center">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non rutrum
-      nisi, ac egestas lacus. Morbi non lacinia libero. Suspendisse consequat
-      nunc ut velit suscipit maximus. Sed diam ex, auctor ac magna nec,
-      elementum accumsan diam. Pellentesque efficitur nisl erat, et venenatis
-      erat consequat sit amet. Curabitur at dignissim lectus. Aenean mollis, est
-      porttitor porta tincidunt, nunc sapien condimentum nunc, quis congue elit
-      magna eget elit. Vivamus at pretium libero. Praesent ut ipsum in felis
-      maximus elementum sed sit amet lorem. Donec molestie maximus mi, vitae
-      rutrum ex auctor eu. Etiam pellentesque sagittis ipsum, non consequat nibh
-      ultricies posuere. Vivamus venenatis augue massa, sed tempus turpis
-      tristique non. Duis consequat fringilla nulla hendrerit ultricies.
-    </p>
+  <div class="container flex flex-col grow">
+    <!-- cards area -->
+    <div
+      class="flex flex-wrap justify-evenly items-center gap-x-5 gap-y-16 grow py-16"
+    >
+      <!-- card item -->
+      <div
+        v-for="card in cardsData"
+        :key="card.id"
+        class="__card group flex flex-col w-full sm:w-fit sm:min-w-80 h-fit min-h-80 border border-[#D9D9D926] rounded-3xl hover:border-[#D9D9D940] hover:shadow-2xl hover:shadow-[#70b96638] transition duration-300 ease-in-out"
+      >
+        <a :href="card.link"
+          class="flex flex-col justify-evenly grow cursor-pointer w-full min-w-72"
+        >
+          <!-- icon area -->
+          <div class="flex justify-center p-4">
+            <!-- circle -->
+            <div
+              class="flex justify-center items-center w-40 h-40 border border-primary border-opacity-20 rounded-full group-hover:border-opacity-40 group-hover:scale-105 transition duration-300 ease-in-out"
+            >
+              <!-- icon -->
+              <div
+                class="origin-center w-[50%] h-[50%] lg:opacity-65 group-hover:scale-110 group-hover:opacity-100 transition duration-300 ease-in-out"
+              >
+                <component :is="card.icon" />
+              </div>
+            </div>
+          </div>
+
+          <!-- text area -->
+          <div class="flex flex-col justify-center items-center p-4">
+            <h2
+              class="text-2xl font-firaCode lg:opacity-65 group-hover:opacity-100 transition ease-in-out duration-300"
+            >
+              {{ card.text }}
+            </h2>
+          </div>
+        </a>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-export default {};
+import { ref } from "vue";
+import AnimationIcon from "~/components/icons/AnimationIcon.vue";
+import PuzzleIcon from "~/components/icons/PuzzleIcon.vue";
+import LayoutIcon from '~/components/icons/LayoutIcon.vue';
+export default {
+  components: {
+    PuzzleIcon,
+    AnimationIcon,
+    LayoutIcon
+  },
+  setup() {
+    const cardsData = ref([
+      {
+        icon: "PuzzleIcon",
+        id: "ui-components",
+        link: "/ui-components",
+        text: "UI Components",
+      },
+      {
+        icon: "AnimationIcon",
+        id: "animations",
+        link: "/animations",
+        text: "Animations",
+      },
+      {
+        icon: "LayoutIcon",
+        id: "layouts",
+        link: "/layouts",
+        text: "Layouts",
+      },
+    ]);
+    return {
+      cardsData,
+    };
+  },
+};
 </script>
 
-<style>
+<style scoped>
+.__card {
+  background: linear-gradient(
+    227deg,
+    #70b96645 -162.93%,
+    rgba(196, 196, 196, 0) 79.12%
+  );
+}
 </style>

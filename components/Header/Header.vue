@@ -21,7 +21,9 @@
         </div>
 
         <!-- MENU LINKS (DESKTOP) -->
-        <div class="hidden lg:block absolute left-1/2 -translate-x-1/2">
+        <div class="hidden absolute left-1/2 -translate-x-1/2"
+          :class="route.href === '/' ? 'lg:hidden' : 'lg:block'"
+        >
           <ul class="flex items-center gap-11">
             <li v-for="menuItem in menuItems" :key="menuItem.id">
               <a
