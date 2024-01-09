@@ -11,7 +11,7 @@ export default defineNuxtConfig({
     exposeConfig: false,
     exposeLevel: 2,
     config: {},
-    injectPosition: 'first',
+    injectPosition: 'last',
     viewer: true,
   },
   googleFonts: {
