@@ -1,6 +1,5 @@
 <template>
   <div class="container flex flex-col grow mt-16">
-
     <!-- title -->
     <section class="flex justify-center">
       <h2 class="text-2xl font-firaCode">UI Components</h2>
@@ -8,25 +7,40 @@
 
     <!-- content -->
     <section>
-      <AccordionList 
-        multiple_items_open
-        :border="false"
-        border_color="#fff"
-        :rounded="15"
-        bg_title="#70b966"
-        bg_content="#6687b9"
-        title_color="#fff"
-        icon_color="#6687b9"
-        content_color="red"
+      <AccordionList
+        :multiple_items_open="false"
+        :data="AccordionListData"
       />
     </section>
   </div>
 </template>
 
 <script>
-import AccordionList from '~/components/AccordionList.vue';
+import { ref } from "vue";
+import AccordionList from "~/components/AccordionList.vue";
 export default {
-  components: { AccordionList },};
+  components: { AccordionList },
+  setup() {
+    const AccordionListData = ref([
+          {
+            title: 'Pergunta 1',
+            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo ex a bibendum pulvinar. In vestibulum mattis condimentum Curabitur scelerisque auctor mollis. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+          },
+          {
+            title: 'Pergunta 2',
+            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo ex a bibendum pulvinar. In vestibulum mattis condimentum Curabitur scelerisque auctor mollis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo ex a bibendum pulvinar. In vestibulum mattis condimentum Curabitur scelerisque auctor mollis.',
+          },
+          {
+            title: 'Pergunta 3',
+            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo ex a bibendum pulvinar. In vestibulum mattis condimentum Curabitur scelerisque auctor mollis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo ex a bibendum pulvinar. In vestibulum mattis condimentum Curabitur scelerisque auctor mollis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo ex a bibendum pulvinar. In vestibulum mattis condimentum Curabitur scelerisque auctor mollis.',
+          },
+        ])
+
+    return {
+      AccordionListData
+    }
+  }
+};
 </script>
 
 <style>
