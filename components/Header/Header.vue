@@ -1,46 +1,23 @@
 <template>
-  <header class="w-full h-20">
+  <header class="w-full h-12" ref="headerElement" id="header">
     <div
-      ref="headerElement"
-      class="fixed flex justify-center w-full px-3 h-20 top-0 z-50 transition ease-in-out duration-300 bg-tertiary shadow-sm shadow-primary"
-      :class="isScrollingDown ? '-translate-y-20' : 'translateY-0 '"
+      class="fixed flex justify-center w-full px-3 h-12 top-0 z-50 transition ease-in-out duration-300 bg-tertiary shadow-sm shadow-primary"
+      :class="isScrollingDown ? '-translate-y-12' : 'translateY-0 '"
     >
-      <nav class="relative flex items-center w-full max-w-7xl">
+      <nav class="relative flex items-center w-full max-w-container">
         <!-- LOGO -->
         <div class="absolute left-0 h-full">
           <div class="flex items-center h-full">
             <a href="/" class="text-white">
               <h2 class="text-xl text-white font-firaCode">
-                <span
-                  >LIB <br />
-                  VueJs</span
-                >
+                <span>LIB  VueJs</span>
               </h2>
             </a>
           </div>
         </div>
 
-        <!-- MENU LINKS (DESKTOP) -->
-        <div class="hidden absolute left-1/2 -translate-x-1/2"
-          :class="route.href === '/' ? 'lg:hidden' : 'lg:block'"
-        >
-          <ul class="flex items-center gap-11">
-            <li v-for="menuItem in menuItems" :key="menuItem.id">
-              <a
-                :href="menuItem.link"
-                class="hover:text-primary transition"
-                :class="
-                  route.href === menuItem.link ? 'text-primary' : 'text-white'
-                "
-              >
-                {{ menuItem.label }}
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <!-- SOCIAL LINKS (DESKTOP) -->
-        <div class="hidden lg:block absolute right-0">
+        <!-- LINKS -->
+        <div class="block absolute right-0">
           <ul class="flex items-center gap-4">
             <li v-for="socialItem in socialItems" :key="socialItem.id">
               <a
@@ -53,64 +30,6 @@
                   :is="socialItem.icon"
                   hover_color="rgb(112, 185, 102)"
                 />
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <!-- HAMBURGER BTN (MOBILE) -->
-        <div class="block absolute right-0 lg:hidden">
-          <button
-            class="menu__hamburger space-y-2 cursor-pointer"
-            :class="menuMobileIsOpen ? 'hamburgerIsActive' : ''"
-            @click.stop="toogleMenuMobile"
-            :aria-label="menuMobileIsOpen ? 'fechar menu' : 'abrir menu'"
-          >
-            <div class="w-8 h-0.5 bg-white transition ease-in-out"></div>
-            <div class="w-8 h-0.5 bg-white transition ease-in-out"></div>
-            <div class="w-8 h-0.5 bg-white transition ease-in-out"></div>
-          </button>
-        </div>
-
-        <!-- CONTENT AREA (MOBILE) -->
-        <div
-          ref="mobileMenuElement"
-          class="absolute top-20 flex lg:hidden flex-col items-end gap-8 right-0 z-50 bg-[#70b966e6] w-60 p-5 text-right h-screen transition-all duration-200 ease-in-out"
-          :class="menuMobileIsOpen ? 'linksMobileVisible' : 'linksMobileHidden'"
-          :aria-hidden="menuMobileIsOpen ? true : false"
-        >
-          <!-- MENU LINKS (MOBILE) -->
-          <ul class="flex flex-col items-center gap-4">
-            <li
-              class="relative"
-              v-for="menuItem in menuItems"
-              :key="menuItem.id"
-            >
-              <a
-                :href="menuItem.link"
-                class="hover:text-tertiary duration-200 ease-in-out"
-                :class="
-                  route.href === menuItem.link
-                    ? 'text-tertiary'
-                    : 'text-white'
-                "
-              >
-                {{ menuItem.label }}
-              </a>
-            </li>
-          </ul>
-
-          <!-- SOCIAL LINKS (MOBILE) -->
-          <ul class="flex items-center gap-4">
-            <li v-for="socialItem in socialItems" :key="socialItem.id">
-              <a
-                :href="socialItem.link"
-                class="block w-5 text-white hover:scale-105 transition"
-                :title="socialItem.label"
-                :aria-label="socialItem.label"
-                target="_blank"
-              >
-                <!-- <component :is="socialItem.icon" /> -->
               </a>
             </li>
           </ul>
