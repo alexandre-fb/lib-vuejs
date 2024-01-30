@@ -1,5 +1,5 @@
 <template>
-  <div class="container flex flex-col grow">
+  <div class="flex flex-col grow">
     <!-- cards area -->
     <div
       class="flex flex-wrap justify-evenly items-center gap-x-5 gap-y-16 grow py-16"
