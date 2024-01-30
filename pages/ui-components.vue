@@ -1,5 +1,5 @@
 <template>
-  <div class="container flex flex-col grow mt-16">
+  <div class="flex flex-col grow mt-16 px-5">
     <!-- title -->
     <section class="flex justify-center">
       <h2 class="text-2xl font-firaCode">UI Components</h2>

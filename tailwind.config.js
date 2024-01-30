@@ -11,6 +11,9 @@ export default {
         roboto: ['Roboto', 'sans-serif'],
         firaCode: ['Fira Code', 'monospace']
       },
+      maxWidth: {
+        container: '1920px',
+      },
     }
   }
 }

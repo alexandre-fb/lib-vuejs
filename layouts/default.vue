@@ -1,13 +1,25 @@
 <template>
-  <div class="flex flex-col justify-start items-center min-h-screen">
+  <div class="flex flex-col min-h-screen">
     <!-- <HeaderStructure /> -->
-    <Header />
-    <main class="flex flex-col w-full grow">
-      <slot />
-    </main>
-    <Footer />
+    <header>
+      <Header />
+    </header>
+
+    <div class="flex max-w-container grow mx-auto">
+      <aside>
+        <SidebarStructure />
+      </aside>
+  
+      <main>
+        <slot />
+      </main>
+    </div>
+
+    <footer>
+      <Footer />
+    </footer>
   </div>
-</template>>
+</template>
 
 <script>
 import Header from '~/components/Header/Header.vue';
@@ -17,10 +29,9 @@ export default {
     Header,
     HeaderStructure
   }
-
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

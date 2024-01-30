@@ -1,5 +1,5 @@
 <template>
-  <div class="p-2">
+  <div class="flex justify-center w-full p-2" id="footer">
     <h6 class="text-sm text-quaternary">
       <span class="text-quaternary">
         Desenvolvido por 👉 
