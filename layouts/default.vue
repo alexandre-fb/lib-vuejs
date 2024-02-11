@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col min-h-screen">
+  <div class="flex flex-col h-full min-h-screen">
     <!-- <HeaderStructure /> -->
     <header>
       <Header />
@@ -10,7 +10,7 @@
         <Sidebar />
       </aside>
   
-      <main class="flex flex-col w-full ">
+      <main class="flex flex-col w-full h-max">
         <slot />
       </main>
     </div>
