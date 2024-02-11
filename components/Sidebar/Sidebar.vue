@@ -27,21 +27,22 @@
           class="w-full p-3 transition-opacity" 
           :class="sidebarIsOpen ? 'opacity-100' : 'opacity-0 xl:opacity-100'"
         >
-          <nav class="flex flex-col gap-4 bg-tertiary">
-            <!-- Elements ui -->
-            <div class="h-[200vh] bg-tertiary">
-              Bloco 1
-            </div>
-  
-            <!-- Animatios -->
-            <div class="h-10 bg-tertiary">
-              Bloco 1
-            </div>
-  
-            <!-- Layouts -->
-            <div class="h-10 bg-tertiary">
-              Bloco 1
-            </div>
+          <nav class="bg-tertiary">
+            <ul class="flex flex-col gap-4">
+              <li>
+                <NuxtLink to="/ui-components">
+                  <span class="font-fira text-xl">UI Components</span>
+                </NuxtLink>
+                <ul class="mt-3 ml-4 flex flex-col gap-4">
+                  <li>
+                    <NuxtLink to="/ui-components#accordion-list-section">
+                      <span>Accordion List</span>
+                    </NuxtLink>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            
           </nav>
         </div>
       </div>

@@ -1,15 +1,47 @@
+export const accordionListData = [
+  {
+    title: "Pergunta 1",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo ex a bibendum pulvinar. In vestibulum mattis condimentum Curabitur scelerisque auctor mollis. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  },
+  {
+    title: "Pergunta 2",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo ex a bibendum pulvinar. In vestibulum mattis condimentum Curabitur scelerisque auctor mollis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo ex a bibendum pulvinar. In vestibulum mattis condimentum Curabitur scelerisque auctor mollis.",
+  },
+  {
+    title: "Pergunta 3",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo ex a bibendum pulvinar. In vestibulum mattis condimentum Curabitur scelerisque auctor mollis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo ex a bibendum pulvinar. In vestibulum mattis condimentum Curabitur scelerisque auctor mollis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo ex a bibendum pulvinar. In vestibulum mattis condimentum Curabitur scelerisque auctor mollis.",
+  },
+];
+
+export const propsListData = [
+  {
+    name: "data",
+    type: "Array",
+    required: "Sim",
+    description: "Informações das abas.",
+  },
+  {
+    name: "multiple_items_open",
+    type: "Boolean",
+    required: "Não",
+    description: "Permite abrir mais de uma aba ao mesmo tempo.",
+  },
+];
+
+export const componentCodeString = `
 <template>
   <ul class="accordion">
-    <li 
-      v-for="(item, index) in data" :key="index" 
-      class="accordion__item"
-      :class="{ active: isActive(index) }"
-    >
+    <li v-for="(item, index) in data" :key="index" class="accordion__item" :class="{ active: isActive(index) }">
       <!-- Title-->
-      <button
-        class="title__area"
-        @click="handleItemClick(index)"
-        :aria-label="`Accordion item: ${item.title}`"
+      <button 
+        class="title__area" 
+        @click="handleItemClick(index)" 
+        :aria-label="'Accordion item: ' + item.title" 
+        :aria-expanded="isActive(index)"
+        :aria-controls="'accordion-content-' + index"
       >
         <h3 class="title__text">
           <i class="title__text__icon"></i>
@@ -18,7 +50,7 @@
       </button>
 
       <!-- Content -->
-      <div class="content__area" :class="{ active: isActive(index) }">
+      <div class="content__area" :class="{ active: isActive(index) }" :id="'accordion-content-' + index">
         <p>
           {{ item.content }}
         </p>
@@ -85,15 +117,15 @@ export default {
     };
   },
 };
-</script>
+<\/script>
   
 <style scoped>
-
 .accordion {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
+
 .accordion__item {
   border: 1px solid #70b966;
   border-radius: 16px;
@@ -141,6 +173,7 @@ export default {
   transform: rotate(-90deg);
   transition: 250ms ease;
 }
+
 .accordion__item.active .title__text__icon::before {
   transform: rotate(0deg);
 }
@@ -161,3 +194,4 @@ export default {
   padding: 0 16px 16px 16px;
 }
 </style>
+`;
