@@ -5,12 +5,12 @@
       <Header />
     </header>
 
-    <div class="flex max-w-container grow mx-auto">
+    <div class="flex w-full max-w-container grow mx-auto">
       <aside>
-        <SidebarStructure />
+        <Sidebar />
       </aside>
   
-      <main>
+      <main class="flex flex-col w-full ">
         <slot />
       </main>
     </div>
@@ -24,10 +24,14 @@
 <script>
 import Header from '~/components/Header/Header.vue';
 import HeaderStructure from '~/components/Header/HeaderStructure.vue';
+import Sidebar from '~/components/Sidebar/Sidebar.vue';
+import SidebarStructure from '~/components/Sidebar/SidebarStructure.vue';
 export default {
   components: {
     Header,
-    HeaderStructure
+    HeaderStructure,
+    Sidebar,
+    SidebarStructure
   }
 }
 </script>
