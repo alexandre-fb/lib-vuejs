@@ -7,10 +7,6 @@ export default {
         tertiary: '#191522',
         quaternary: '#8c8c8c'
       },
-      fontFamily: {
-        roboto: ['Roboto', 'sans-serif'],
-        firaCode: ['Fira Code', 'monospace']
-      },
       maxWidth: {
         container: '1920px',
       },

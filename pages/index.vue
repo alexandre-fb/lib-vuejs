@@ -31,7 +31,7 @@
           <!-- text area -->
           <div class="flex flex-col justify-center items-center p-4">
             <h2
-              class="text-2xl font-firaCode lg:opacity-65 group-hover:opacity-100 transition ease-in-out duration-300"
+              class="text-2xl font-fira lg:opacity-65 group-hover:opacity-100 transition ease-in-out duration-300"
             >
               {{ card.text }}
             </h2>

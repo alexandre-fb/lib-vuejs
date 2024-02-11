@@ -1,7 +1,7 @@
 <template>
   <header class="w-full h-12" ref="headerElement" id="header">
     <div
-      class="fixed flex justify-center w-full px-3 h-12 top-0 z-50 transition ease-in-out duration-300 bg-tertiary shadow-sm shadow-primary"
+      class="fixed flex justify-center w-full px-3 h-12 top-0 z-[999] transition ease-in-out duration-300 bg-tertiary shadow-sm shadow-primary"
       :class="isScrollingDown ? '-translate-y-12' : 'translateY-0 '"
     >
       <nav class="relative flex items-center w-full max-w-container">
@@ -9,8 +9,12 @@
         <div class="absolute left-0 h-full">
           <div class="flex items-center h-full">
             <a href="/" class="text-white">
-              <h2 class="text-xl text-white font-firaCode">
-                <span>LIB  VueJs</span>
+              <h2 class="text-xl text-white font-firaCode flex">
+                <VueLogo :width="'30px'" />
+                <span class="font-bold">
+                  ALE
+                  <span class="hidden">vue js</span>
+                </span>
               </h2>
             </a>
           </div>
@@ -43,12 +47,14 @@
 import { ref, onMounted, onBeforeUnmount } from "vue";
 import LinkedinIcon from "../icons/LinkedinIcon.vue";
 import GitHubIcon from "../icons/GitHubIcon.vue";
+import VueLogo from "../icons/VueLogo.vue";
 
 export default {
   name: "Header",
   components: {
     LinkedinIcon,
     GitHubIcon,
+    VueLogo
   },
   setup() {
     const route = useRoute();
