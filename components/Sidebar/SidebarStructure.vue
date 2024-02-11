@@ -13,7 +13,7 @@
           <button @click="toogleSidebar" class="flex flex-col gap-[6px]">
             <span
               class="block h-[2px] w-5 bg-white transition-all relative"
-              :class="sidebarIsOpen ? 'left-0' : 'left-2'"
+              :class="sidebarIsOpen ? 'left-2' : 'left-0'"
             ></span>
             <span class="block h-[2px] w-7 bg-white"></span>
             <span class="block h-[2px] w-7 bg-white"></span>
@@ -22,7 +22,10 @@
       </div>
 
       <!-- menu area -->
-      <div class="w-full p-3">
+      <div 
+        class="w-full p-3 transition-opacity" 
+        :class="sidebarIsOpen ? 'opacity-100' : 'opacity-0'"
+      >
         <nav class="flex flex-col gap-4 bg-green-500">
           <div class="h-[200vh] bg-green-900">Bloco 1</div>
           <div class="h-10 bg-green-900">Bloco 1</div>
