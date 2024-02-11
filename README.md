@@ -1,5 +1,6 @@
 # Libs usadas
 Font awesome
+vue-code-block - https://webdevnerdstuff.github.io/vue-code-block/
 
 
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
