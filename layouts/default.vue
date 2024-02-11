@@ -10,7 +10,7 @@
         <Sidebar />
       </aside>
   
-      <main class="flex flex-col w-full h-max">
+      <main class="flex flex-col w-full h-max xl:ml-4">
         <slot />
       </main>
     </div>
