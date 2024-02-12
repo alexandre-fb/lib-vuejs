@@ -1,4 +1,4 @@
-export default [
+export const statesData = [
   {
     id: "BR-AC",
     name: "Acre",

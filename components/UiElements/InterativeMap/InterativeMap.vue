@@ -90,14 +90,19 @@
 
     <!-- text container -->
     <div class="int-map__text-area">
-      Estado: {{ hasHoverStateData() ? hoverState.name : selectedState.name }}
-      <p>{{ hasHoverStateData() ? hoverState.description : selectedState.description }}</p>
+      <h2 v-if="!isHoverState() && !selectedState.name" class="text__title text__title--empty">Seleciona um estado no mapa</h2>
+      <h2 class="text__title">
+        {{ isHoverState() ? hoverState.name : selectedState.name }}
+      </h2> 
+      <p class="text__paragraph">
+        {{ isHoverState() ? hoverState.description : selectedState.description }}
+      </p>
     </div>
   </div>
 </template>
 <script>
 import { ref, onMounted } from 'vue';
-import statesData from './statesData';
+import { statesData } from './statesData';
 
 export default {
   name: 'InterativeMap',
@@ -108,7 +113,6 @@ export default {
     const states = ref([]);
     const selectedState = ref({});
     const hoverState = ref({});
-    const isHover = ref(false);
 
     onMounted(() => {
       states.value = Array.from(document.getElementById('brazil-map').getElementsByTagName('path'));
@@ -120,7 +124,6 @@ export default {
     });
 
     const handleClick = (event) => {
-      console.log(event.target.id)
       selectedState.value = statesData.find((item) => {
         return item.id === event.target.id;
       });
@@ -135,18 +138,16 @@ export default {
     };
 
     const handleMouseLeave = () => {
-      isHover.value = false;
       hoverState.value = {};
     };
 
     const handleMouseMove = (event) => {
-      isHover.value = false;
       hoverState.value = statesData.find((item) => {
         return item.id === event.target.id;
       });
     };
 
-    const hasHoverStateData = () => {
+    const isHoverState = () => {
       return hoverState.value && Object.keys(hoverState.value).length > 0;
     };
 
@@ -154,17 +155,33 @@ export default {
       states,
       selectedState,
       hoverState,
-      isHover,
       handleClick,
       handleMouseLeave,
       handleMouseMove,
-      hasHoverStateData
+      isHoverState
     };
   },
 };
 </script>
 
 <style scoped>
+
+.int-map__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+/*mapa*/
+.int-map__map-area {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 svg {
   width: 100%;
   max-width: 600px;
@@ -190,23 +207,23 @@ svg path.active {
   stroke-width: 3px;
 }
 
-.int-map__container {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-}
 
-.int-map__map-area {
-  flex: 1;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
+/*texto*/
 .int-map__text-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 100%;
-  max-width: 300px;
+  max-width: 360px;
+  padding: 0 16px;
+}
+
+.int-map__text-area .text__title {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+.int-map__text-area .text__title--empty {
+  font-size: 24px;
 }
 
 @media screen and (max-width: 1024px) {
@@ -217,6 +234,7 @@ svg path.active {
   .int-map__text-area {
     text-align: center;
     max-width: 600px;
+    width: 100%;
   }
 }
 </style>
