@@ -39,6 +39,11 @@
                       <span>Accordion List</span>
                     </NuxtLink>
                   </li>
+                  <li>
+                    <NuxtLink to="/ui-components#interative-map-section">
+                      <span>Mapa Interativo</span>
+                    </NuxtLink>
+                  </li>
                 </ul>
               </li>
             </ul>
