@@ -24,25 +24,40 @@
   
         <!-- menu area -->
         <div 
-          class="w-full p-3 transition-opacity" 
+          class="w-full py-8 px-3 transition-opacity" 
           :class="sidebarIsOpen ? 'opacity-100' : 'opacity-0 xl:opacity-100'"
         >
           <nav class="bg-tertiary">
             <ul class="flex flex-col gap-4">
-              <li>
-                <NuxtLink to="/ui-components">
-                  <span class="font-fira text-xl">UI Components</span>
+              <li v-for="(menuItem, index) in menuItems" :key="index">
+
+                <!-- primary items -->
+                <NuxtLink 
+                  :to="menuItem.primaryItem.link" 
+                  class="transition hover:opacity-90"
+                  :class="{ activeItem : isActiveMenuItem(menuItem.primaryItem.link) }"
+                      @click="handleMenuItemClick(menuItem.primaryItem.link)"
+                >
+                  <span class="font-fira text-xl">
+                    {{ menuItem.primaryItem.title }}
+                  </span>
                 </NuxtLink>
+
+                <!-- secondary items -->
                 <ul class="mt-3 ml-4 flex flex-col gap-4">
-                  <li>
-                    <NuxtLink to="/ui-components#accordion-list-section">
-                      <span>Accordion List</span>
+                  <li v-for="(secondaryItem, index) in menuItem.secondaryItems" :key="index">
+                    <NuxtLink 
+                      :to="secondaryItem.link"
+                      class="transition hover:opacity-90"
+                      :class="{ activeItem : isActiveMenuItem(secondaryItem.link) }"
+                      @click="handleMenuItemClick(secondaryItem.link)"
+                    >
+                      <span>{{ secondaryItem.title }}</span>
                     </NuxtLink>
                   </li>
                 </ul>
               </li>
             </ul>
-            
           </nav>
         </div>
       </div>
@@ -57,11 +72,49 @@ export default {
   name: "Sidebar",
   components: {},
   setup() {
+    const route = useRoute()
     const sidebarElement = ref()
     const sidebarIsOpen = ref(false);
     const sidebarMaxHeight = ref(null);
     const headerHeight = ref(null);
     const footerHeight = ref(null);
+    const lastScroll = ref(0);
+    const isScrollingDown = ref(false);
+    const activeMenuItem = ref('');
+    const menuItems = ref([
+     {
+      primaryItem: {
+        title: 'Início',
+        link: '/'
+      },
+     }, 
+     {
+      primaryItem: {
+        title: 'Componentes UI',
+        link: '/ui-components'
+      },
+      secondaryItems: [
+        {
+          title: 'Lista acordeon',
+          link: '/ui-components#lista-acordeon'
+        },
+        {
+          title: 'Mapa interativo',
+          link: '/ui-components#mapa-interativo'
+        },
+      ]
+     }, 
+    ])
+
+    const handleMenuItemClick = (menuLink) => {
+      sidebarIsOpen.value = false;
+      activeMenuItem.value = menuLink
+    }
+    
+    const isActiveMenuItem = (menuLink) => {
+      console.log('activeMenuItem.value', activeMenuItem.value)
+      return activeMenuItem.value === menuLink;
+    }
 
     const calcSidebarMaxHeight = () => {
       const windowHeight = window.innerHeight;
@@ -71,9 +124,6 @@ export default {
     const toogleSidebar = () => {
       sidebarIsOpen.value = !sidebarIsOpen.value;
     };
-
-    const lastScroll = ref(0);
-    const isScrollingDown = ref(false);
 
     onMounted(() => {
       headerHeight.value = document.getElementById("header").offsetHeight;
@@ -134,6 +184,9 @@ export default {
       toogleSidebar,
       isScrollingDown,
       sidebarMaxHeight,
+      menuItems,
+      handleMenuItemClick,
+      isActiveMenuItem
     };
   },
 };
@@ -156,4 +209,7 @@ export default {
 ::-webkit-scrollbar-track {
   background-color: #b6b6b6;
 }
+
+.activeItem {
+  color: rgb(112, 185, 102)}
 </style>

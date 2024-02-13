@@ -2,7 +2,7 @@
   <section class="py-10 px-3" :id="section_id">
     <!-- Title -->
     <SectionTitle>
-      Accordion List
+      Mapa Interativo
     </SectionTitle>
 
     <!-- Exemplo -->
@@ -11,29 +11,35 @@
         Exemplo de utilização:
       </SectionSubtitle>
 
-      <AccordionList 
-        :multiple_items_open="true" 
-        :data="AccordionListData" 
-      />
+      <div class="py-20">
+        <InterativeMap />
+      </div>
     </div>
 
     <div class="mb-16">
       <SectionSubtitle>
-        Props:
+        Observação:
       </SectionSubtitle>
 
-      <PropsList :propsList="propsList" />
+      <p>
+        A interação é feita manipulando as tags 'path' do svg.
+      </p>
+      
     </div>
+   
 
     <div>
       <SectionSubtitle>
         Componente completo (vue 3):
       </SectionSubtitle>
 
-      <div class="xl:max-w-[1000px]">
-        <VCodeBlock :code="componentCode" highlightjs lang="html" theme="nord" maxHeight="350px" />
+      <div class="xl:max-w-[1000px] mb-12">
+        <VCodeBlock :code="componentCode" highlightjs lang="html" theme="nord" maxHeight="350px" label="InterativeMap.vue" />
       </div>
-    </div>
+      <div class="xl:max-w-[1000px]">
+        <VCodeBlock :code="mapDataCode" highlightjs lang="javascript" theme="nord" maxHeight="350px" label="statesData.js (importado no componente acima)" />
+      </div>
+    </div> 
   </section>
 </template>
     
@@ -41,19 +47,18 @@
 import { ref } from 'vue';
 
 import VCodeBlock from '@wdns/vue-code-block';
-import AccordionList from '~/components/UiElements/AccordionList/AccordionList.vue';
+import InterativeMap from '~/components/UiElements/InterativeMap/InterativeMap.vue';
 import SectionTitle from '../../SectionTitle.vue';
 import SectionSubtitle from '../../SectionSubtitle.vue';
-import PropsList from '../../PropsList.vue';
 
-import { accordionListData, propsListData, componentCodeString } from './sectionData';
+import { componentCodeString, mapDataCodeString } from './sectionData';
+
 
 export default {
   components: {
     SectionTitle,
     SectionSubtitle,
-    PropsList,
-    AccordionList,
+    InterativeMap,
     VCodeBlock,
   },
   props: {
@@ -62,14 +67,12 @@ export default {
     }
   },
   setup() {
-    const AccordionListData = ref(accordionListData)
-    const propsList = ref(propsListData)
     const componentCode = ref(componentCodeString);
+    const mapDataCode = ref(mapDataCodeString);
 
     return {
-      AccordionListData,
-      propsList,
       componentCode,
+      mapDataCode
     }
   },
 };
