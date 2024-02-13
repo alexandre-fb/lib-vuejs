@@ -1,9 +1,9 @@
 <template>
   <div class="flex flex-col grow border-b-2 pb-12">
-    <SectionAccordion section_id="accordion-list-section" />
+    <SectionAccordion section_id="lista-acordeon" />
   </div>
   <div class="flex flex-col grow border-b-2 pb-12">
-    <SectionInterativeMap section_id="interative-map-section" />
+    <SectionInterativeMap section_id="mapa-interativo" />
   </div>
 </template>
 

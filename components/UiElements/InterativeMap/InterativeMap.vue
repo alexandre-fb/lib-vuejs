@@ -90,10 +90,11 @@
 
     <!-- text container -->
     <div class="int-map__text-area">
-      <h2 v-if="!isHoverState() && !selectedState.name" class="text__title text__title--empty">Seleciona um estado no mapa</h2>
+      <h2 v-if="!isHoverState() && !selectedState.name" class="text__title text__title--empty">Seleciona um estado no mapa
+      </h2>
       <h2 class="text__title">
         {{ isHoverState() ? hoverState.name : selectedState.name }}
-      </h2> 
+      </h2>
       <p class="text__paragraph">
         {{ isHoverState() ? hoverState.description : selectedState.description }}
       </p>
@@ -165,7 +166,6 @@ export default {
 </script>
 
 <style scoped>
-
 .int-map__container {
   display: flex;
   justify-content: center;
@@ -178,6 +178,7 @@ export default {
   flex: 1;
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
@@ -222,6 +223,7 @@ svg path.active {
   font-size: 28px;
   margin-bottom: 12px;
 }
+
 .int-map__text-area .text__title--empty {
   font-size: 24px;
 }
