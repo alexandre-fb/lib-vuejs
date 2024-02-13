@@ -30,7 +30,9 @@
         Componente completo (vue 3):
       </SectionSubtitle>
 
-      <VCodeBlock :code="componentCode" highlightjs lang="html" theme="nord" maxHeight="350px" />
+      <div class="xl:max-w-[1000px]">
+        <VCodeBlock :code="componentCode" highlightjs lang="html" theme="nord" maxHeight="350px" />
+      </div>
     </div>
   </section>
 </template>
