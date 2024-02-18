@@ -7,7 +7,7 @@
         <!-- LOGO -->
         <div class="absolute left-0 h-full">
           <div class="flex items-center h-full">
-            <a href="/" class="text-white">
+            <button @click="toPageTop" class="text-white">
               <h2 class="text-xl text-white font-firaCode flex items-center">
                 <VueLogo :width="'30px'" />
                 <span class="font-bold">
@@ -15,7 +15,7 @@
                   <span class="hidden">vue js</span>
                 </span>
               </h2>
-            </a>
+            </button>
           </div>
         </div>
 
@@ -49,7 +49,6 @@ export default {
     VueLogo
   },
   setup() {
-    const route = useRoute();
     const menuMobileIsOpen = ref(false);
 
     const headerElement = ref();
@@ -103,15 +102,15 @@ export default {
 
     });
 
-    function handleWindowScroll() {
+    const handleWindowScroll = () => {
       setScrollDirection();
     }
 
-    function handleWindowClick(event) {
+    const handleWindowClick = (event) => {
       clickOutsideMenuMobile(event.target);
     }
 
-    function setScrollDirection() {
+    const setScrollDirection = () => {
       const currentScroll = window.scrollY;
       const headerHeight = headerElement.value.offsetHeight;
       if (currentScroll > lastScroll.value && currentScroll > headerHeight) {
@@ -123,7 +122,7 @@ export default {
       lastScroll.value = currentScroll;
     }
 
-    function clickOutsideMenuMobile(elementClicked) {
+    const clickOutsideMenuMobile = (elementClicked) => {
       if (
         menuMobileIsOpen.value === true &&
         elementClicked !== mobileMenuElement.value &&
@@ -133,8 +132,12 @@ export default {
       }
     }
 
-    function toogleMenuMobile() {
+    const toogleMenuMobile = () => {
       menuMobileIsOpen.value = !menuMobileIsOpen.value;
+    }
+
+    const toPageTop = () => {
+      document.documentElement.scrollTop = 0;
     }
 
     return {
@@ -145,7 +148,7 @@ export default {
       menuItems,
       socialItems,
       toogleMenuMobile,
-      route,
+      toPageTop
     };
   },
 };
