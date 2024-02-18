@@ -4,40 +4,29 @@
       <div
         class="__sidebar__wrapper fixed z-50 shadow-sm bottom-0 overflow-y-auto bg-tertiary transition-all ease-in-out duration-300 overflow-x-hidden"
         :class="sidebarIsOpen ? 'w-72' : 'w-0 xl:w-72'"
-        :style="`height: ${isScrollingDown ? '100vh' : sidebarMaxHeight + 'px'}`"
-      >
+        :style="`height: ${isScrollingDown ? '100vh' : sidebarMaxHeight + 'px'}`">
         <!-- hamburger -->
         <div class="h-12 xl:hidden">
-          <div
-            class="fixed w-full h-12 max-w-container p-3 z-40 xl:hidden bg-tertiary bg-opacity-50"
-          >
+          <div class="fixed w-full h-12 max-w-container p-3 z-40 xl:hidden bg-tertiary bg-opacity-50">
             <button @click="toogleSidebar" class="flex flex-col gap-[6px]">
-              <span
-                class="block h-[2px] w-5 bg-white transition-all relative"
-                :class="sidebarIsOpen ? 'left-2' : 'left-0 xl:left-2'"
-              ></span>
+              <span class="block h-[2px] w-5 bg-white transition-all relative"
+                :class="sidebarIsOpen ? 'left-2' : 'left-0 xl:left-2'"></span>
               <span class="block h-[2px] w-7 bg-white"></span>
               <span class="block h-[2px] w-7 bg-white"></span>
             </button>
           </div>
         </div>
-  
+
         <!-- menu area -->
-        <div 
-          class="w-full py-8 px-3 transition-opacity" 
-          :class="sidebarIsOpen ? 'opacity-100' : 'opacity-0 xl:opacity-100'"
-        >
+        <div class="w-full py-8 px-3 transition-opacity"
+          :class="sidebarIsOpen ? 'opacity-100' : 'opacity-0 xl:opacity-100'">
           <nav class="bg-tertiary">
             <ul class="flex flex-col gap-4">
               <li v-for="(menuItem, index) in menuItems" :key="index">
 
                 <!-- primary items -->
-                <NuxtLink 
-                  :to="menuItem.primaryItem.link" 
-                  class="transition hover:opacity-90"
-                  :class="{ activeItem : isActiveMenuItem(menuItem.primaryItem.link) }"
-                      @click="handleMenuItemClick(menuItem.primaryItem.link)"
-                >
+                <NuxtLink :to="menuItem.primaryItem.link" class="transition hover:opacity-90"
+                  @click="handleMenuItemClick(menuItem.primaryItem.link)">
                   <span class="font-fira text-xl">
                     {{ menuItem.primaryItem.title }}
                   </span>
@@ -46,12 +35,8 @@
                 <!-- secondary items -->
                 <ul class="mt-3 ml-4 flex flex-col gap-4">
                   <li v-for="(secondaryItem, index) in menuItem.secondaryItems" :key="index">
-                    <NuxtLink 
-                      :to="secondaryItem.link"
-                      class="transition hover:opacity-90"
-                      :class="{ activeItem : isActiveMenuItem(secondaryItem.link) }"
-                      @click="handleMenuItemClick(secondaryItem.link)"
-                    >
+                    <NuxtLink :to="secondaryItem.link" class="transition hover:opacity-90"
+                      :id="`link-${secondaryItem.id}`" @click="handleMenuItemClick(secondaryItem.link)">
                       <span>{{ secondaryItem.title }}</span>
                     </NuxtLink>
                   </li>
@@ -82,38 +67,37 @@ export default {
     const isScrollingDown = ref(false);
     const activeMenuItem = ref('');
     const menuItems = ref([
-     {
-      primaryItem: {
-        title: 'Início',
-        link: '/'
-      },
-     }, 
-     {
-      primaryItem: {
-        title: 'Componentes UI',
-        link: '/ui-components'
-      },
-      secondaryItems: [
-        {
-          title: 'Lista acordeon',
-          link: '/ui-components#lista-acordeon'
+      {
+        primaryItem: {
+          title: 'Início',
+          link: '/',
+          id: 'inicio'
         },
-        {
-          title: 'Mapa interativo',
-          link: '/ui-components#mapa-interativo'
+      },
+      {
+        primaryItem: {
+          title: 'Componentes UI',
+          link: '/ui-components',
+          id: 'ui-components'
         },
-      ]
-     }, 
+        secondaryItems: [
+          {
+            title: 'Lista acordeon',
+            link: '/ui-components#lista-acordeon',
+            id: 'lista-acordeon'
+          },
+          {
+            title: 'Mapa interativo',
+            link: '/ui-components#mapa-interativo',
+            id: 'mapa-interativo'
+          },
+        ]
+      },
     ])
 
     const handleMenuItemClick = (menuLink) => {
       sidebarIsOpen.value = false;
       activeMenuItem.value = menuLink
-    }
-    
-    const isActiveMenuItem = (menuLink) => {
-      console.log('activeMenuItem.value', activeMenuItem.value)
-      return activeMenuItem.value === menuLink;
     }
 
     const calcSidebarMaxHeight = () => {
@@ -141,19 +125,21 @@ export default {
       window.removeEventListener("resize", handleWindowResize);
     });
 
-    function handleWindowClick(event) {
+    const handleWindowClick = (event) => {
       clickOutsideSidebar(event.target)
     }
 
-    function handleWindowScroll() {
+    const handleWindowScroll = () => {
       setScrollDirection();
       calcSidebarMaxHeight();
+      activeMenuSecondaryItem()
     }
-    function handleWindowResize() {
+
+    const handleWindowResize = () => {
       calcSidebarMaxHeight();
     }
 
-    function setScrollDirection() {
+    const setScrollDirection = () => {
       const currentScroll = window.scrollY;
       if (
         currentScroll > lastScroll.value &&
@@ -167,7 +153,7 @@ export default {
       lastScroll.value = currentScroll;
     }
 
-    function clickOutsideSidebar(elementClicked) {
+    const clickOutsideSidebar = (elementClicked) => {
       if (
         window.innerWidth < 1280 &&
         sidebarIsOpen.value === true &&
@@ -178,6 +164,31 @@ export default {
       }
     }
 
+    const isActiveMenuPrimaryItem = (menuLink) => {
+      return activeMenuItem.value === menuLink;
+    }
+
+    const activeMenuSecondaryItem = () => {
+      const screenHeightPercentage = innerHeight * 0.5
+      const sections = document.querySelectorAll('section[id]')
+
+      //faz o loop por cada seção
+      sections.forEach((section, index) => {
+        const sectionTop = section.getBoundingClientRect().top
+        const sectionBottom = section.getBoundingClientRect().bottom
+        const positionToActive = sectionTop - screenHeightPercentage
+        const positionToInactive = sectionBottom - screenHeightPercentage
+        const sectionId = section.getAttribute('id')
+
+        const currentLink = document.querySelector('a[id="link-' + sectionId + '"]')
+        if (positionToActive < 0 && positionToInactive > 0) {
+          currentLink.classList.add('activeSecondaryItem')
+        } else {
+          currentLink.classList.remove('activeSecondaryItem')
+        }
+      })
+    }
+
     return {
       sidebarElement,
       sidebarIsOpen,
@@ -186,7 +197,7 @@ export default {
       sidebarMaxHeight,
       menuItems,
       handleMenuItemClick,
-      isActiveMenuItem
+      isActiveMenuPrimaryItem
     };
   },
 };
@@ -198,11 +209,11 @@ export default {
 }
 
 ::-webkit-scrollbar {
-  width: 10px; 
+  width: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(112, 185, 102, .85); 
+  background-color: rgba(112, 185, 102, .85);
   box-shadow: 0 0 10px #ffffff;
 }
 
@@ -210,6 +221,12 @@ export default {
   background-color: #b6b6b6;
 }
 
-.activeItem {
-  color: rgb(112, 185, 102)}
+a[aria-current="page"]:not([id]) {
+  border-bottom: 1px solid #ffffff28;
+  padding-block: 8px;
+}
+
+.activeSecondaryItem {
+  color: rgb(112, 185, 102)
+}
 </style>
