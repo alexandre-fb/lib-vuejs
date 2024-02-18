@@ -2,14 +2,13 @@
   <header class="w-full h-12" ref="headerElement" id="header">
     <div
       class="fixed flex justify-center w-full px-3 h-12 top-0 z-[999] transition ease-in-out duration-300 bg-tertiary shadow-sm shadow-primary"
-      :class="isScrollingDown ? '-translate-y-12' : 'translateY-0 '"
-    >
+      :class="isScrollingDown ? '-translate-y-12' : 'translateY-0 '">
       <nav class="relative flex items-center w-full max-w-container">
         <!-- LOGO -->
         <div class="absolute left-0 h-full">
           <div class="flex items-center h-full">
             <a href="/" class="text-white">
-              <h2 class="text-xl text-white font-firaCode flex">
+              <h2 class="text-xl text-white font-firaCode flex items-center">
                 <VueLogo :width="'30px'" />
                 <span class="font-bold">
                   ALE
@@ -24,16 +23,9 @@
         <div class="block absolute right-0">
           <ul class="flex items-center gap-4">
             <li v-for="socialItem in socialItems" :key="socialItem.id">
-              <a
-                :href="socialItem.link"
-                class="block w-5 text-white transition"
-                :aria-label="socialItem.label"
-                target="_blank"
-              >
-                <component
-                  :is="socialItem.icon"
-                  hover_color="rgb(112, 185, 102)"
-                />
+              <a :href="socialItem.link" class="block w-5 text-white transition" :aria-label="socialItem.label"
+                target="_blank">
+                <component :is="socialItem.icon" hover_color="rgb(112, 185, 102)" />
               </a>
             </li>
           </ul>
@@ -93,13 +85,14 @@ export default {
       },
       {
         label: "Github",
-        id: "github", 
+        id: "github",
         link: "https://github.com/alexandre-fb",
         icon: markRaw(GitHubIcon),
       },
     ]);
 
     onMounted(() => {
+
       window.addEventListener("scroll", handleWindowScroll);
       window.addEventListener("click", handleWindowClick);
     });
@@ -107,6 +100,7 @@ export default {
     onBeforeUnmount(() => {
       window.removeEventListener("scroll", handleWindowScroll);
       window.removeEventListener("click", handleWindowClick);
+
     });
 
     function handleWindowScroll() {
