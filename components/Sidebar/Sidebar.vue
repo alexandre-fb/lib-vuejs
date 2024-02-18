@@ -69,9 +69,9 @@ export default {
     const menuItems = ref([
       {
         primaryItem: {
-          title: 'Início',
+          title: 'Sobre',
           link: '/',
-          id: 'inicio'
+          id: 'sobre'
         },
       },
       {
