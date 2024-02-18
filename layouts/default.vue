@@ -12,12 +12,11 @@
   
       <main class="flex flex-col w-full h-max xl:ml-4">
         <slot />
+        <footer>
+          <Footer />
+        </footer>
       </main>
     </div>
-
-    <footer>
-      <Footer />
-    </footer>
   </div>
 </template>
 
