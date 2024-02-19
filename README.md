@@ -1,18 +1,20 @@
-# Libs usadas
-Font awesome
-vue-code-block - https://webdevnerdstuff.github.io/vue-code-block/
+# Biblioteca de Componentes Vue.js
 
+Bem-vindo à minha Biblioteca de Componentes Vue.js!
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Meu nome é Alexandre Bisognin, e desenvolvi esta biblioteca com a missão de acelerar o desenvolvimento, mantendo a qualidade e promovendo uma experiência eficiente e consistente no meu dia a dia.
 
-# Nuxt 3 Minimal Starter
+## Tecnologias Utilizadas
+- **Nuxt 3:** 
+- **Vue 3:** 
+- **Tailwind CSS:** 
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Como Usar
+Os componentes foram projetados para serem reutilizáveis, responsivos e acessíveis, e estão disponíveis na íntegra. Basta copiar o código, adicionar ao seu projeto e personalizar dados e estilos conforme necessário.
 
 ## Setup
 
-
-Make sure to install the dependencies:
+Certifique-se de instalar as dependências:
 
 ```bash
 # npm
@@ -28,9 +30,9 @@ yarn install
 bun install
 ```
 
-## Development Server
+## Servidor de Desenvolvimento
 
-Start the development server on `http://localhost:3000`:
+Inicie o servidor de desenvolvimento em `http://localhost:3000`:
 
 ```bash
 # npm
@@ -46,9 +48,9 @@ yarn dev
 bun run dev
 ```
 
-## Production
+## Produção
 
-Build the application for production:
+Construa a aplicação para produção:
 
 ```bash
 # npm
@@ -64,7 +66,8 @@ yarn build
 bun run build
 ```
 
-Locally preview production build:
+Visualize localmente a versão de produção:
+
 
 ```bash
 # npm
@@ -80,4 +83,4 @@ yarn preview
 bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Consulte a [documentação de implantação](https://nuxt.com/docs/getting-started/deployment) para obter mais informações.
