@@ -1,5 +1,5 @@
 <template>
-    <h2 class="flex w-full justify-center py-10 px-3 font-fira text-2xl">
+    <h2 class="flex w-full justify-center py-10 px-3 font-fira text-2xl text-center">
         <slot />
     </h2>
 </template>
