@@ -1,9 +1,9 @@
 <template>
   <div class="flex flex-col h-full min-h-screen">
     <!-- <HeaderStructure /> -->
-    <header>
+    <div>
       <Header />
-    </header>
+    </div>
 
     <div class="flex w-full max-w-container grow mx-auto">
       <aside>
