@@ -1,13 +1,12 @@
 <template>
   <header class="w-full h-12" ref="headerElement" id="header">
     <div
-      class="fixed flex justify-center w-full px-3 h-12 top-0 z-[999] transition ease-in-out duration-300 bg-tertiary shadow-sm shadow-primary"
-      :class="isScrollingDown ? '-translate-y-12' : 'translateY-0 '">
+      class="__header-wrapper fixed flex justify-center w-full px-3 h-12 top-0 z-[999] transition ease-in-out duration-300 shadow-sm shadow-primary">
       <nav class="relative flex items-center w-full max-w-container">
         <!-- LOGO -->
         <div class="absolute left-0 h-full">
           <div class="flex items-center h-full">
-            <button @click="toPageTop" class="text-white">
+            <NuxtLink :to="'/'">
               <h2 class="text-xl text-white font-firaCode flex items-center">
                 <VueLogo :width="'30px'" />
                 <span class="font-bold">
@@ -15,7 +14,7 @@
                   <span class="hidden">vue js</span>
                 </span>
               </h2>
-            </button>
+            </NuxtLink>
           </div>
         </div>
 
@@ -54,9 +53,6 @@ export default {
     const headerElement = ref();
     const mobileMenuElement = ref();
 
-    const lastScroll = ref(0);
-    const isScrollingDown = ref(false);
-
     const menuItems = ref([
       {
         label: "Início",
@@ -91,7 +87,6 @@ export default {
     ]);
 
     onMounted(() => {
-
       window.addEventListener("scroll", handleWindowScroll);
       window.addEventListener("click", handleWindowClick);
     });
@@ -110,18 +105,6 @@ export default {
       clickOutsideMenuMobile(event.target);
     }
 
-    const setScrollDirection = () => {
-      const currentScroll = window.scrollY;
-      const headerHeight = headerElement.value.offsetHeight;
-      if (currentScroll > lastScroll.value && currentScroll > headerHeight) {
-        isScrollingDown.value = true;
-      } else {
-        isScrollingDown.value = false;
-      }
-
-      lastScroll.value = currentScroll;
-    }
-
     const clickOutsideMenuMobile = (elementClicked) => {
       if (
         menuMobileIsOpen.value === true &&
@@ -136,27 +119,34 @@ export default {
       menuMobileIsOpen.value = !menuMobileIsOpen.value;
     }
 
-    const toPageTop = () => {
-      document.documentElement.scrollTop = 0;
-    }
-
     return {
       menuMobileIsOpen,
       headerElement,
       mobileMenuElement,
-      isScrollingDown,
       menuItems,
       socialItems,
       toogleMenuMobile,
-      toPageTop
     };
   },
 };
 </script>
 
 <style scoped>
-/*MENU HAMBURGER*/
 
+.__header-wrapper::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: rgba(25, 21, 34, 0.047);
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(2px);
+}
+
+/*MENU HAMBURGER*/
 .menu__hamburger.hamburgerIsActive :first-child {
   transform: rotate(-225deg);
   position: relative;

@@ -2,12 +2,11 @@
   <transition name="fade" appear>
     <div class="xl:w-72" ref="sidebarElement">
       <div
-        class="__sidebar__wrapper fixed z-50 shadow-sm bottom-0 overflow-y-auto bg-tertiary transition-all ease-in-out duration-300 overflow-x-hidden"
-        :class="sidebarIsOpen ? 'w-72' : 'w-0 xl:w-72'"
-        :style="`height: ${isScrollingDown ? '100vh' : sidebarMaxHeight + 'px'}`">
+        class="__sidebar__wrapper fixed top-12 z-50 shadow-sm bottom-0 overflow-y-auto bg-tertiary transition-all ease-in-out duration-300 overflow-x-hidden"
+        :class="sidebarIsOpen ? 'w-72' : 'w-0 xl:w-72'">
         <!-- hamburger -->
         <div class="h-12 xl:hidden">
-          <div class="fixed w-full h-12 max-w-container p-3 z-40 xl:hidden bg-tertiary bg-opacity-50">
+          <div class="fixed w-full h-12 max-w-container p-3 z-40 xl:hidden bg-tertiary bg-opacity-75">
             <button @click="toogleSidebar" class="flex flex-col gap-[6px]">
               <span class="block h-[2px] w-5 bg-white transition-all relative"
                 :class="sidebarIsOpen ? 'left-2' : 'left-0 xl:left-2'"></span>
@@ -57,14 +56,10 @@ export default {
   name: "Sidebar",
   components: {},
   setup() {
-    const route = useRoute()
     const sidebarElement = ref()
     const sidebarIsOpen = ref(false);
-    const sidebarMaxHeight = ref(null);
     const headerHeight = ref(null);
     const footerHeight = ref(null);
-    const lastScroll = ref(0);
-    const isScrollingDown = ref(false);
     const activeMenuItem = ref('');
     const menuItems = ref([
       {
@@ -100,11 +95,6 @@ export default {
       activeMenuItem.value = menuLink
     }
 
-    const calcSidebarMaxHeight = () => {
-      const windowHeight = window.innerHeight;
-      sidebarMaxHeight.value = windowHeight - headerHeight.value;
-    };
-
     const toogleSidebar = () => {
       sidebarIsOpen.value = !sidebarIsOpen.value;
     };
@@ -112,17 +102,14 @@ export default {
     onMounted(() => {
       headerHeight.value = document.getElementById("header").offsetHeight;
       footerHeight.value = document.getElementById("footer").offsetHeight;
-      calcSidebarMaxHeight();
 
       window.addEventListener("click", handleWindowClick);
       window.addEventListener("scroll", handleWindowScroll);
-      window.addEventListener("resize", handleWindowResize);
     });
 
     onBeforeUnmount(() => {
       window.removeEventListener("click", handleWindowClick);
       window.removeEventListener("scroll", handleWindowScroll);
-      window.removeEventListener("resize", handleWindowResize);
     });
 
     const handleWindowClick = (event) => {
@@ -130,27 +117,7 @@ export default {
     }
 
     const handleWindowScroll = () => {
-      setScrollDirection();
-      calcSidebarMaxHeight();
       activeMenuSecondaryItem()
-    }
-
-    const handleWindowResize = () => {
-      calcSidebarMaxHeight();
-    }
-
-    const setScrollDirection = () => {
-      const currentScroll = window.scrollY;
-      if (
-        currentScroll > lastScroll.value &&
-        currentScroll > headerHeight.value
-      ) {
-        isScrollingDown.value = true;
-      } else {
-        isScrollingDown.value = false;
-      }
-
-      lastScroll.value = currentScroll;
     }
 
     const clickOutsideSidebar = (elementClicked) => {
@@ -172,7 +139,6 @@ export default {
       const screenHeightPercentage = innerHeight * 0.5
       const sections = document.querySelectorAll('section[id]')
 
-      //faz o loop por cada seção
       sections.forEach((section, index) => {
         const sectionTop = section.getBoundingClientRect().top
         const sectionBottom = section.getBoundingClientRect().bottom
@@ -193,8 +159,6 @@ export default {
       sidebarElement,
       sidebarIsOpen,
       toogleSidebar,
-      isScrollingDown,
-      sidebarMaxHeight,
       menuItems,
       handleMenuItemClick,
       isActiveMenuPrimaryItem
