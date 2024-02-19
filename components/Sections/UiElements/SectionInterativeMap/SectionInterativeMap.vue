@@ -1,5 +1,5 @@
 <template>
-  <section class="py-10 px-3" :id="section_id">
+  <section class="py-16 xl:py-10 px-3" :id="section_id">
     <!-- Title -->
     <SectionTitle>
       Mapa Interativo
