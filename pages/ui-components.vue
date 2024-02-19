@@ -13,8 +13,8 @@ import SectionAccordion from "~/components/Sections/UiElements/SectionAccordion/
 import SectionInterativeMap from "~/components/Sections/UiElements/SectionInterativeMap/SectionInterativeMap.vue";
 
 export default {
-  components: { 
-    SectionAccordion, 
+  components: {
+    SectionAccordion,
     SectionInterativeMap
   },
   setup() {
@@ -25,5 +25,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>
