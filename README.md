@@ -2,6 +2,8 @@
 
 Bem-vindo à minha Biblioteca de Componentes Vue.js!
 
+[Link](https://lib-vue.alexandrefb.com/)
+
 Meu nome é Alexandre Bisognin, e desenvolvi esta biblioteca com a missão de acelerar o desenvolvimento, mantendo a qualidade e promovendo uma experiência eficiente e consistente no meu dia a dia.
 
 ## Tecnologias Utilizadas
